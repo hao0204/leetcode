@@ -1,0 +1,16 @@
+int reverse (int x){
+	int out;
+	int x_copy = x;
+	if (x_copy < 0)
+		x_copy = -x_copy;
+	out = 0;
+	while (x_copy > 0){ 
+		if (out > INT_MAX / 10) //防止溢出
+			return 0;
+		out = out * 10 + x_copy % 10;
+		x_copy /= 10;
+	}
+	if (x < 0)
+		out = -out;
+	return out;
+}
