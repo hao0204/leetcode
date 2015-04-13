@@ -1,0 +1,15 @@
+bool isPalindrome (int x)
+{
+	int out;
+	int x_copy = x;
+	if (x_copy < 0)
+		return false;
+	out = 0;
+	while (x_copy > 0){ 
+		if (out > INT_MAX / 10) //防止溢出
+			return false;
+		out = out * 10 + x_copy % 10;
+		x_copy /= 10;
+	}
+	return out == x;
+}
