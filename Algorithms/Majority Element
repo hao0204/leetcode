@@ -1,0 +1,20 @@
+public class Solution {
+    public int majorityElement(int[] num) {
+        ArrayList<Integer> array1 = new ArrayList<Integer>();
+    	ArrayList<Integer> array2 = new ArrayList<Integer>();
+    	for (int i = 0; i < num.length; i++){
+    		if (array1.contains(num[i])){
+    			array2.set(array1.indexOf(num[i]), array2.get(array1.indexOf(num[i])) + 1);
+    		}
+    		else{
+    			array1.add(num[i]);
+    			array2.add(1);
+    		}
+    	}
+    	for (int i = 0; i < array2.size(); i++){
+    		if (array2.get(i) > num.length / 2){
+    			return array1.get(array2.indexOf(array2.get(i)));
+    		}
+    	}
+    	return 0;
+}
