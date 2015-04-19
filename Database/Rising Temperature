@@ -1,0 +1,1 @@
+select a.Id from Weather as a, Weather as b where b.Date = DATE_SUB(a.Date, INTERVAL 1 day) and a.Temperature > b. Temperature 
