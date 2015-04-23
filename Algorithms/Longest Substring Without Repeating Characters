@@ -1,0 +1,46 @@
+#include <stdio.h>
+int lengthOfLongestSubstring(char* s) {
+	int i, max_length = 0, j, k, length = 0,key;
+	char *str;
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		length = 1;
+		key = 1;
+		for (j = i + 1; s[j] != '\0'; j++)
+		{
+			for (k = i; k < j; k++)
+			{
+				if (s[j] == s[k])
+				{
+					if (max_length < length)
+					{
+						max_length = length;
+					}
+					key = 0;
+					break;
+				}
+			}
+			if (key == 0)
+				break;
+			length++;
+			if (max_length < length)
+				max_length = length;
+		}
+	}
+	return max_length > length ? max_length: length;
+}
+
+//更好的方法
+int lengthOfLongestSubstring(char* s) {
+    int mp[128];
+    for(int i = 0;i < 128;++i) mp[i] = -1;
+    int len = strlen(s), first = 0, size = 0;
+    for(int i = 0;i < len;++i){
+        if(mp[s[i]] >= first)
+            first = mp[s[i]] + 1;
+        mp[s[i]] = i;
+        if(size < i - first + 1)
+            size = i - first + 1;
+    }
+    return size;
+}
